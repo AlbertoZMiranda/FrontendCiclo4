@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+// BrowserRouter: vamos a manejar todo los que tiene que ver con rutas
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import MascotaScreen from "./screens/MascotaScreen";
+// --------
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="d-flex flex-column site-container">
+        <header>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <LinkContainer to="/">
+                <Navbar.Brand>PetFinder</Navbar.Brand>
+              </LinkContainer>
+            </Container>
+          </Navbar>
+        </header>
+        <main>
+          <Container>
+            <Routes>
+              <Route path="/mascota/:slug" element={<MascotaScreen />} />;
+              <Route path="/" element={<HomeScreen />} />
+            </Routes>
+          </Container>
+        </main>
+        <footer>
+          <div className="text-center">Derechos Reservados AlbertoZMiranda</div>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
